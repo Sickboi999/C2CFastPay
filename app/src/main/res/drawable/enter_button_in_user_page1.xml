@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 陰影層 -->
+    <item android:left="0dp" android:right="0dp" android:top="15dp" android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#4F7576"/>  <!-- 陰影顏色 -->
+            <corners android:radius="10dp"/>  <!-- 圓角 -->
+        </shape>
+    </item>
+
+    <!-- 按鈕本體 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#F79329"/>  <!-- 按鈕背景顏色 -->
+            <corners android:radius="10dp"/>  <!-- 保持圓角 -->
+        </shape>
+    </item>
+</layer-list>
