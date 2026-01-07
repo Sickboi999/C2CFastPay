@@ -205,7 +205,7 @@ fun DetailSection(title: String, content: String) {
                 text = title,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF487F81) // 主題藍綠色
+                color = Color(0xFF487F81) // 藍綠色
             )
             Text(
                 text = content,

@@ -12,7 +12,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.ListenerRegistration // 新增 Import
+import com.google.firebase.firestore.ListenerRegistration 
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -36,7 +36,7 @@ class UserViewModel : ViewModel() {
     // 通知 Repository 用於監聽未讀數 
     private val notificationRepository = NotificationRepository()
 
-    // 未讀數量狀態 (給 UI 顯示紅點用) 
+    // 未讀數量狀態
     private val _unreadCount = MutableStateFlow(0)
     val unreadCount: StateFlow<Int> = _unreadCount.asStateFlow()
 
@@ -48,14 +48,14 @@ class UserViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
-    // 用來發送單次提示訊息 (Toast)
+    // 用來發送單次提示訊息
     private val _toastMessage = MutableSharedFlow<String>()
     val toastMessage: SharedFlow<String> = _toastMessage.asSharedFlow()
 
-    // 儲存監聽器，以便在 ViewModel 銷毀時移除
+    // 儲存監聽器
     private var userListener: ListenerRegistration? = null
 
-    // 重設密碼倒數計時 (單位：秒)，UI 會讀取此變數來顯示
+    // 重設密碼倒數計時
     var resetPasswordCountDown by mutableStateOf(0)
 
     init {
@@ -106,8 +106,6 @@ class UserViewModel : ViewModel() {
                     .update("points", FieldValue.increment(amount.toLong()))
                     .await()
 
-                // 不需要再手動呼叫 fetchUserData() 了，因為監聽器會自動收到更新
-
                 _toastMessage.emit("儲值成功！增加 $amount 點")
 
             } catch (e: Exception) {
@@ -135,7 +133,6 @@ class UserViewModel : ViewModel() {
                     .update("avatarUrl", downloadUrl)
                     .await()
 
-                // 不需要手動 fetchUserData()
                 _toastMessage.emit("大頭貼更新成功")
             } catch (e: Exception) {
                 Log.e("UserViewModel", "上傳失敗", e)
@@ -176,7 +173,6 @@ class UserViewModel : ViewModel() {
                     val userRef = db.collection("users").document(uid)
                     batch.update(userRef, "name", trimmedName)
 
-                    // 搜尋並更新所有「上架商品 (products)」的 ownerName
                     val productsQuery = db.collection("products")
                         .whereEqualTo("ownerId", uid)
                         .get()
@@ -186,8 +182,6 @@ class UserViewModel : ViewModel() {
                         batch.update(doc.reference, "ownerName", trimmedName)
                     }
 
-                    // 搜尋並更新所有「願望清單 (wishes)」的 ownerName
-                    // 注意：WishItem 在資料庫的欄位是 userId
                     val wishesQuery = db.collection("wishes")
                         .whereEqualTo("userId", uid)
                         .get()

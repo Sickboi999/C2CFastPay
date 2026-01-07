@@ -52,12 +52,12 @@ class ProductRepository(private val context: Context) {
             }
             val finalMainImage = finalImageUrls.firstOrNull() ?: ""
 
-            // 寫入商品 (包含 ownerName)
+            // 寫入商品 
             val newProduct = product.copy(
                 imageUri = finalMainImage,
                 images = finalImageUrls,
                 ownerId = userId,
-                ownerName = userName, // ★ 這裡寫入正確名字
+                ownerName = userName, 
                 ownerEmail = currentUser?.email ?: "",
                 timestamp = System.currentTimeMillis()
             )

@@ -24,6 +24,5 @@ data class CartItem(
     var isChecked: Boolean = false   // 是否勾選
 ) {
     // 無參數建構子 (Firebase 讀取需要)
-    // 修正：補上 addedAt (0L) 的參數，確保參數數量對應上方定義
     constructor() : this("", "", "", "0", "", "", 1, 0L, 99, false)
 }

@@ -282,7 +282,7 @@ fun AppNavigationGraph(
             // 呼叫畫面 (參數名要對應 WishDetailScreen 的定義)
             WishDetailScreen(
                 navController = navController,
-                wishId = id // ★★★ 這裡要用 wishId ★★★
+                wishId = id
             )
         }
 

@@ -3,7 +3,7 @@ package com.example.c2cfastpay_card.UIScreen.components
 import android.content.Context
 import android.util.Log
 import com.example.c2cfastpay_card.data.CartItem
-import com.example.c2cfastpay_card.data.NotificationItem // ★ 請確認 NotificationItem 在這個路徑
+import com.example.c2cfastpay_card.data.NotificationItem 
 import com.example.c2cfastpay_card.data.Order
 import com.example.c2cfastpay_card.data.OrderItem
 import com.google.firebase.auth.FirebaseAuth
@@ -219,7 +219,6 @@ class CartRepository(private val context: Context) {
                 Log.d("DEBUG_NOTIF", "檢查賣家: $sellerId")
 
                 if (sellerId.isNotBlank()) {
-                    // ★★★ 測試用：暫時允許通知自己，方便你測試 (正式上線可加回 sellerId != userId) ★★★
                     // if (sellerId != userId) {
                     val notif = NotificationItem(
                         userId = sellerId, // 通知對象 (賣家)

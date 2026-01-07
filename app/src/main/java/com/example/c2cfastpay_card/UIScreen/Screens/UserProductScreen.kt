@@ -234,7 +234,6 @@ fun UserProductScreen(
                                 product = item,
                                 isWish = (selectedTabIndex == 1),
                                 onClick = {
-                                    // ★★★ 核心修正：根據 Tab 決定跳轉路徑 ★★★
                                     if (selectedTabIndex == 0) {
                                         // 上架商品 -> 商品詳情
                                         navController.navigate("product_detail/${item.id}")

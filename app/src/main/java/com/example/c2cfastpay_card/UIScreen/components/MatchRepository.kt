@@ -75,7 +75,6 @@ class MatchRepository(private val context: Context) {
             recordSwipe(targetProduct.id, SwipeDirection.RIGHT)
 
             // 準備商品資料快照
-            // 注意：price 轉 Double 防止崩潰
             val priceVal = targetProduct.price.toString().toDoubleOrNull() ?: 0.0
 
             val productSummary = mapOf(
@@ -108,7 +107,7 @@ class MatchRepository(private val context: Context) {
                 return true
 
             } else {
-                // 聊天室不存在 -> 檢查對方是否喜歡過我 (Reverse Like)
+                // 聊天室不存在 -> 檢查對方是否喜歡過我
                 val reverseLikes = db.collection("likes")
                     .whereEqualTo("likerId", otherId)
                     .whereEqualTo("productOwnerId", myId)
@@ -225,7 +224,7 @@ class MatchRepository(private val context: Context) {
                         id = doc.id,
                         otherUserId = otherUserId,
                         otherUserName = otherName,
-                        otherUserAvatar = otherAvatar, // ★ 填入抓到的頭像
+                        otherUserAvatar = otherAvatar, // 填入抓到的頭像
                         myLikedItems = emptyList(),
                         productImageUrl = imageUrl,
                         timestamp = doc.getLong("updatedAt") ?: 0L,

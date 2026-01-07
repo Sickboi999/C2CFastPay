@@ -241,7 +241,6 @@ fun ProductDetailScreen(
                 if (displayImages.isNotEmpty()) {
                     // 大圖顯示區域
                     Card(modifier = Modifier.fillMaxWidth().aspectRatio(1.3f), shape = RoundedCornerShape(24.dp), elevation = CardDefaults.cardElevation(4.dp)) {
-                        // ★★★ 使用 selectedImageUri ★★★
                         Image(
                             painter = rememberAsyncImagePainter(
                                 if(selectedImageUri.isNotEmpty()) selectedImageUri else displayImages[0]
